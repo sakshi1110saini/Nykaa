@@ -1,0 +1,501 @@
+import XCTest
+
+
+
+
+
+
+
+class NykaaUITests: XCTestCase {
+    // let minimumGestureFrequency: UInt32 = 1 // Minimum amount of time to pass between gestures in seconds
+    let minimumGestureFrequency: Double = 0.3     //time between gestures
+    let duration: Double = 60 * 3                 // Execution time limit in seconds
+    let gestureLimit: UInt = 100                  // Number of gestures to be executed
+    let gestureTypeCount: UInt32 = 14             // Number of types of gesture available
+    let app = XCUIApplication()
+    
+    override func setUp() {
+
+        super.setUp()
+
+        // why not continue after failure? It's an ios app crasher, it must not stop just after finding first failure.
+
+        continueAfterFailure = true
+
+        //launch app
+
+        app.launch()
+
+    }
+
+
+
+    override func tearDown() {
+
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+
+        super.tearDown()
+
+    }
+
+    
+
+    //     This test case will be running based on
+
+    //     the given duration of time and
+
+    //     executeRandomGesture() will execute the case
+
+    //     generated randomly
+
+    
+
+    func testFindCrashInGivenDuration() {
+
+        // Creating a loop for the given time limit
+
+        app.links["Nykaa://category?category_id=10741&name=Nude%20Lipsticks"].tap()
+
+        let end = NSDate(timeIntervalSinceNow: duration)        
+
+        while NSDate().compare(end as Date) == ComparisonResult.orderedAscending {
+
+            // Execute a gesture based on the random number generated
+
+            executeRandomGesture()
+
+        }
+
+    }
+
+    
+
+    //     This test case will be running based on the given gesture count
+
+    //     and function executeRandomGesture()
+
+    //     will be executing number of times according to the
+
+    //     gesture limit provided
+
+    
+
+    func testFindCrashInGivenGestureLimit() {
+
+        // Loop for as many times as the gesture limit allows
+
+        for _ in 0..<gestureLimit {
+
+            executeRandomGesture()
+
+        }
+
+    }
+
+
+
+    private func executeRandomGesture() {
+
+        let randomGestureID = arc4random_uniform(gestureTypeCount)
+
+        let coordinate = getRandomCoordinate()
+
+        print("random coordinate**********: \(coordinate)")
+
+        let device = XCUIDevice.shared
+
+        switch randomGestureID {
+
+        case 0:
+
+            var var1 = CGFloat(2)
+
+            var var2 = CGFloat(1.2)
+
+            while var2 < 33 {
+
+                let varcoordinate = getRandomCoordinate()
+
+                let maxSize = app.windows.element(boundBy: 0).frame.size
+
+                let x = varcoordinate.screenPoint.x / maxSize.width
+
+                let y = varcoordinate.screenPoint.y / maxSize.height
+
+                let vector = CGVector(dx: x / var1, dy: y / var2)
+
+                if var2 == 19.2 {
+
+                    _ = CGVector(dx: x, dy: y)
+
+                }
+
+                var1 = var1*2
+
+                var2 = var2*2
+
+                let coordinate = getCoordinateForVector(vector: vector)
+
+                print("bhai saab ye coordinate hai : \(coordinate)")
+
+                coordinate.tap()
+
+            }
+
+        case 1:
+
+            coordinate.doubleTap()
+
+        case 2:
+
+            // Scroll up
+
+            let maxSize = app.windows.element(boundBy: 0).frame.size
+
+            print("maxsize of simulator frame is ****************: \(maxSize)")
+
+            let startY = coordinate.screenPoint.y
+
+            let dy = (startY * getRandomValueBetween0And1()) / maxSize.height
+
+            let vector = CGVector(dx: coordinate.screenPoint.x / maxSize.width, dy: dy)
+
+            scroll(fromCoordinate: coordinate, toCoordinate: getCoordinateForVector(vector: vector))
+
+        case 3:
+
+            // Scroll down
+
+            let maxSize = app.windows.element(boundBy: 0).frame.size
+
+            print("maxsize of simulator frame is ****************: \(maxSize)")
+
+            let startY = coordinate.screenPoint.y
+
+            let dy = ((maxSize.height - startY) * getRandomValueBetween0And1() + startY) / maxSize.height
+
+            let vector = CGVector(dx: coordinate.screenPoint.x / maxSize.width, dy: dy)
+
+            scroll(fromCoordinate: coordinate, toCoordinate: getCoordinateForVector(vector: vector))
+
+        case 4:
+
+            // Scroll left
+
+            let maxSize = app.windows.element(boundBy: 0).frame.size
+
+            print("maxsize of simulator frame is ****************: \(maxSize)")
+
+            let startX = coordinate.screenPoint.x
+
+            let dx = (startX * getRandomValueBetween0And1()) / maxSize.width
+
+            let vector = CGVector(dx: dx, dy: coordinate.screenPoint.y / maxSize.height)
+
+            scroll(fromCoordinate: coordinate, toCoordinate: getCoordinateForVector(vector: vector))
+
+        case 5:
+
+            // Scroll right
+
+            let maxSize = app.windows.element(boundBy: 0).frame.size
+
+            print("maxsize of simulator frame is ****************: \(maxSize)")
+
+            let startX = coordinate.screenPoint.x
+
+            print("value of startx ...............................: \(startX)")
+
+            print("maxsize width value:::::::::::::::::::::::::::: : \(maxSize.width)")
+
+            let dx = ((maxSize.width - startX) * getRandomValueBetween0And1() + startX) / maxSize.width
+
+            let vector = CGVector(dx: dx, dy: coordinate.screenPoint.y / maxSize.height)
+
+            print("vector value...................................: \(vector)")
+
+            scroll(fromCoordinate: coordinate, toCoordinate: getCoordinateForVector(vector: vector))
+
+        case 6:
+
+            device.orientation = .portrait
+
+        case 7:
+
+            device.orientation = .portraitUpsideDown
+
+        case 8:
+
+            device.orientation = .landscapeLeft
+
+        case 9:
+
+            device.orientation = .landscapeRight
+
+        case 10:
+
+            device.orientation = .faceUp
+
+        case 11:
+
+            device.orientation = .faceDown
+
+        case 12:
+
+            // Move in a completely random direction
+
+            scroll(fromCoordinate: coordinate, toCoordinate: getRandomCoordinate())
+
+        case 13:
+
+            coordinate.press(forDuration: 2)
+
+        default:
+
+            XCTFail("Random number failure - unhandled case for number : \(randomGestureID)")
+
+        }
+
+        print("Executed gesture \(randomGestureID) on coordinate: \(coordinate)")
+
+        // Wait for cooldown period
+
+        //sleep(UInt32(minimumGestureFrequency))
+
+        //        let ms = 10000//
+
+        //        usleep(useconds_t(2 * ms)) //will sleep fort 2 millisecond
+
+    }
+
+    private func getRandomCoordinate() -> XCUICoordinate {
+
+        let randomX = getRandomValueBetween0And1()
+
+        let randomY = getRandomValueBetween0And1()
+
+        let randomVector = CGVector(dx: randomX, dy: randomY)
+
+        print("random vector generated *******************: \(randomVector)")
+
+        let coordinate = getCoordinateForVector(vector: randomVector)
+
+        print("coordinate generateed###############: \(coordinate)")
+
+        return coordinate
+
+    }
+
+
+
+    private func ifgetRandomCoordinate() -> XCUICoordinate{
+
+        //let var1 =
+
+        let x = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+
+        print("value of x is *******: \(x)")
+
+        let y = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+
+        print("value of x is *******: \(y)")
+
+        let vector = CGVector(dx: x, dy: y)
+
+        let coordinate = getCoordinateForVector(vector: vector)
+
+        print("bhai ye coordinate h***********************: \(coordinate)")
+
+        return coordinate
+
+    }
+
+    
+
+    private func getCoordinateForVector(vector: CGVector) -> XCUICoordinate {
+
+        let window = app.windows.element(boundBy: 0)
+
+        let coordinate = window.coordinate(withNormalizedOffset: vector)
+
+        return coordinate
+
+    }
+
+
+
+    private func getRandomValueBetween0And1() -> CGFloat {
+
+        return CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+
+    }
+
+    
+
+    private func scroll(fromCoordinate: XCUICoordinate, toCoordinate: XCUICoordinate) {
+
+        fromCoordinate.press(forDuration: 0, thenDragTo: toCoordinate)
+
+    }
+
+    
+
+    func getRadomNoBetween1and2() -> Float{
+
+        return 1 + Float(getRandomValueBetween0And1())
+
+    }
+
+    //    func getsSubCoordinate() {
+
+    //        let maxSize = app.windows.element(boundBy: 0).frame.size
+
+    //       // let x = CGFloat(maxSize.width)
+
+    //        var dy = maxSize.height
+
+    //        while dy > 10 {
+
+    //            dy = dy/getRadomNoBetween1and2()
+
+    //        }
+
+    //let vector = CGVector(dx: x, dy: y)
+
+    //   print("sub vector created ***************: \(vector)")
+
+    //return vector
+
+    
+
+    
+
+    enum iMessage {
+
+        static func launch() -> XCUIApplication {
+
+            // Open iMessage App
+
+            let messageApp = XCUIApplication(bundleIdentifier: "com.apple.MobileSMS")
+
+            // Launch iMessage app
+
+            messageApp.launch()
+
+            // Wait some seconds for launch
+
+            sleep(2)
+
+            // Return application handle
+
+            return messageApp
+
+        }
+
+        
+
+        static func open(URLString urlString: String, inMessageApp app: XCUIApplication) {
+
+            // Find Simulator Message
+
+            app.cells.staticTexts["Kate Bell"].tap()
+
+            // Tap message field
+
+            app.textFields["iMessage"].tap()
+
+            // Enter the URL string
+
+            app.typeText(urlString)
+
+            // Simulate sending link
+
+            app.buttons["sendButton"].tap()
+
+            sleep(3)
+
+            // The first link on the page
+
+            let messageBubble = app.cells.links["com.apple.messages.URLBalloonProvider"]
+
+            let messagebubbles = app.cells.links["com.apple.message."]
+
+            XCTAssertTrue(messageBubble.waitForExistence(timeout: 10))
+
+            messageBubble.tap()
+
+            //app.staticTexts["Chosing Lipstick Color"].firstMatch.tap()
+
+            sleep(3)
+
+        }
+
+    }
+
+    
+
+    //    func clickfirstmessage() {
+
+    //        let app = XCUIApplication()
+
+    //        app.icons["Messages"].tap()
+
+    //        app//.tap()
+
+    //        XCUIDevice.shared.orientation = .portrait
+
+    //        XCUIDevice.shared.orientation = .portrait
+
+    //    }
+
+
+
+    func clickLinkWithMessage(link: String) {
+
+        // Open iMessage app
+
+        let messageApp = iMessage.launch()
+
+        iMessage.open(URLString: link, inMessageApp: messageApp)
+
+        //Reset the Message app
+
+        messageApp.terminate()
+
+        let app = XCUIApplication()
+
+        XCTAssert(app.label == "Branchsters", "Could not open application with \(link)")
+
+        // Do some handling to ensure that this is the right page.
+
+        sleep(2)
+
+        app.terminate()
+
+    }
+
+    
+
+    func testExample() {
+
+        let marketingLinks = [
+
+            "https://www.nykaa.com/top-lipsticks-online?intcmp=hp,beauty_buying_guides,2,lipstick-finder",
+
+            "https://branchster.app.link/UdfU8eacH"
+
+        ]
+
+        
+
+        for link in marketingLinks {
+
+            clickLinkWithMessage(link: link)
+
+        }
+
+    }
+
+
+
+}

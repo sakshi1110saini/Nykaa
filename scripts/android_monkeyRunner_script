@@ -1,0 +1,121 @@
+echo 'starting test'
+buildlog=$BUILD_NUMBER'-'build_log
+file=$BUILD_NUMBER'-'exe_log
+
+monkey_command='monkey --ignore-crashes -p com.fsn.nykaa -v 50000 --pct-syskeys 1 --pct-appswitch 1 --pct-touch 100 logcat -d'
+
+echo $monkey_command
+
+echo 'killing emulator'
+adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill; done | exit 0
+sleep 5s
+
+emulator -avd Galaxy_Nexus_API_28 &
+echo 'sleeping for 10s'
+sleep 1m
+
+echo 'Turning wifi ON'
+adb shell svc wifi enable
+sleep 7s
+
+echo 'installing apk'
+adb uninstall com.fsn.nykaa | exit 0
+adb install -r $WORKSPACE/nykaa.apk
+sleep 5s
+
+echo 'launching app using adb'
+adb shell am start -n com.fsn.nykaa/com.fsn.nykaa.SplashScreenActivity
+sleep 10s
+
+echo 'skipping login'
+adb shell input tap 300 1120
+sleep 10s
+
+echo 'starting monkey runner'
+adb shell $monkey_command >> $file
+
+echo '1. trying again ----'
+
+echo 'launching app using adb'
+adb shell am start -a android.intent.action.VIEW -d "https://www.nykaa.com/smashbox-photo-finish-foundation-primer-a.html?ptype=product&productId=191289&skuId=191289&categoryId=233"
+sleep 10s
+echo 'starting monkey runner'
+adb shell $monkey_command >> $file
+
+
+echo 'Turning wifi ON'
+adb shell svc wifi enable
+sleep 7s
+
+
+echo '2. trying again ----'
+
+echo 'launching app using adb'
+adb shell am start -a android.intent.action.VIEW -d "https://www.nykaa.com/brands/lakme.html/b/604?id=604&ptype=brand&popularity_algo=conversion"
+sleep 10s
+echo 'starting monkey runner'
+adb shell $monkey_command >> $file
+\
+echo 'Turning wifi ON'
+adb shell svc wifi enable
+sleep 7s
+
+
+echo '3. trying again ----'
+
+echo 'launching app using adb'
+adb shell am start -a android.intent.action.VIEW -d "https://www.nykaa.com/makeup/face/face-primer.html?ptype=lst&id=233&root=nav_3&dir=desc&order=popularity"
+sleep 10s
+echo 'starting monkey runner'
+adb shell $monkey_command >> $file
+
+echo 'Turning wifi ON'
+adb shell svc wifi enable
+sleep 7s
+
+
+echo '4. trying again ----'
+
+echo 'launching app using adb'
+adb shell am start -a android.intent.action.VIEW -d "com.fsn.nykaa-android://nykaa/category?category_id=12&name=makeup&source=nykaa&medium=email&campaign=test_campaign"
+sleep 10s
+echo 'starting monkey runner'
+adb shell $monkey_command >> $file
+
+echo 'Turning wifi ON'
+adb shell svc wifi enable
+sleep 7s
+
+
+echo '5. trying again ----'
+echo 'launching app using adb'
+adb shell am start -a android.intent.action.VIEW -d "com.fsn.nykaa-android://nykaa/category?category_id=24&store=pro"
+sleep 10s
+echo 'starting monkey runner'
+adb shell $monkey_command >> $file
+
+
+echo '6. trying again ----'
+
+echo 'launching app using adb'
+adb shell am start -a android.intent.action.VIEW -d "com.fsn.nykaa-android://nykaa/offerpage?utm_source=Facebook&utm_medium=Paid&utm_campaign=141218_ChristmasSale_HeroBrands_MPA_Android&utm_term=christmas-sale&utm_content=offers"
+sleep 10s
+echo 'starting monkey runner'
+adb shell $monkey_command >> $file
+
+echo 'killing emulator'
+adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill; done | exit 0
+
+echo 'copying log from build to workspace'
+cp $WORKSPACE/../../jobs/$JOB_NAME/builds/$BUILD_NUMBER/log $WORKSPACE/$buildlog
+
+echo 'assertion to check the crash'
+a=$(cat $buildlog | grep -i 'CRASH: com.fsn.nykaa')
+if [ $a != '' ]
+then
+echo '********************** FOUND CRASH **********************'
+exit 1
+
+else
+echo '##################### NO FOUND CRASH #####################'
+fi

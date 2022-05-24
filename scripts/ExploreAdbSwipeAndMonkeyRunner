@@ -1,0 +1,121 @@
+echo 'NOTE -: Need to do login first before starting this test that too with the user having delivered Product in his/her account'
+echo 'starting test'
+buildlog=$BUILD_NUMBER'-'build_log
+file=$BUILD_NUMBER'-'exe_log
+
+monkey_command='monkey --ignore-crashes -p com.fsn.nykaa -v 50000 --pct-syskeys 1 --pct-appswitch 1 --pct-touch 100 logcat -d'
+swipe_command='adb shell input swipe 400 1900 300 300'
+
+echo 'test started'
+ 
+echo $monkey_command
+
+echo 'killing emulator'
+adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill; done | exit 0
+sleep 2s
+
+emulator -avd Pixel_3a_XL_API_28 &
+echo 'sleeping for 10s'
+sleep 15s
+
+echo 'Turning wifi ON'
+adb shell svc wifi enable 
+sleep 5s
+
+
+echo 'launching app using adb'
+adb shell am start -n com.fsn.nykaa/com.fsn.nykaa.SplashScreenActivity
+sleep 7s
+
+
+echo 'Clicking on Hamburger menu button'
+adb shell input tap 0 100
+sleep 3s
+
+echo 'Clicking on Explore Tab'
+adb shell input tap 10 400
+sleep 3s
+echo 'Turning wifi ON'
+adb shell svc wifi enable 
+sleep 7s
+
+echo 'swipe till end'
+a=1
+while [ $a -lt 20 ] 
+do  
+    echo 'Swipe'
+    $swipe_command
+    sleep 1s
+    a=`expr $a + 1` 
+done
+sleep 3s
+adb shell input swipe 300 300 600 1000
+
+
+echo 'Clicking on Nykaa Cosmetic Tab'
+adb shell input tap 250 250
+sleep 3s
+
+echo 'swipe till end'
+a=1
+while [ $a -lt 20 ] 
+do  
+    echo 'Swipe'
+    $swipe_command
+    sleep 1s
+    a=`expr $a + 1` 
+done
+sleep 3s
+adb shell input swipe 300 300 600 1000
+
+echo 'Clicking on Sun Protection Tab'
+adb shell input tap 550 250
+sleep 3s
+
+echo 'swipe till end'
+a=1
+while [ $a -lt 20 ] 
+do  
+    echo 'Swipe'
+    $swipe_command
+    sleep 1s
+    a=`expr $a + 1` 
+done
+sleep 3s
+adb shell input swipe 300 300 600 1000
+
+echo 'Clicking on Anti Aging Tab'
+adb shell input tap 850 250
+sleep 3s
+
+echo 'swipe till end'
+a=1
+while [ $a -lt 20 ] 
+do  
+    echo 'Swipe'
+    $swipe_command
+    sleep 1s
+    a=`expr $a + 1` 
+done
+sleep 3s
+adb shell input swipe 300 300 600 1000
+
+echo 'starting monkey runner'
+adb shell $monkey_command >> $file
+
+echo 'killing emulator'
+adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill; done | exit 0
+
+echo 'copying log from build to workspace'
+cp $WORKSPACE/../../jobs/$JOB_NAME/builds/$BUILD_NUMBER/log $WORKSPACE/$buildlog
+
+echo 'assertion to check the crash'
+a=$(cat $buildlog | grep -i 'CRASH: com.fsn.nykaa')
+if [ $a != '' ]
+then
+	echo '********************** FOUND CRASH **********************'
+	exit 1
+
+else
+	echo '##################### NO FOUND CRASH #####################'
+fi
