@@ -1,0 +1,31 @@
+{
+  "$schema":"https://json-schema.org/draft/2019-09/schema#",
+  "type":"object",
+  "properties":{
+    "status":{
+      "type":"integer"
+    },
+    "result":{
+      "type":"array"
+    },
+    "msg":{
+      "type":"string"
+    },
+    "state":{
+      "type":"object",
+      "properties":{
+        "style_version":{
+          "type":"integer"
+        }
+      },
+      "required":[
+        
+      ]
+    }
+  },
+  "required":[
+    "msg",
+    "result",
+    "status"
+  ]
+}
