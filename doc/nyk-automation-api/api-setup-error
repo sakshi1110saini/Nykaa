@@ -1,0 +1,17 @@
+create war file via mvn
+mvn clean compile install
+
+#Refernces
+
+Installation
+https://documentation.bonitasoft.com/6.x-7.2/install-tomcat-service-windows
+
+fix for 403
+https://stackoverflow.com/questions/38551166/403-access-denied-on-tomcat-8-manager-app-without-prompting-for-user-password
+
+https://needhamia.com/how-to/java-software-development/create-a-jersey-web-project-using-maven-tomcat-and-eclipse/
+https://needhamia.com/how-to/java-software-development/install-and-configure-tomcat/
+
+Logger 
+https://www.codejava.net/coding/how-to-initialize-log4j-for-java-web-application
+

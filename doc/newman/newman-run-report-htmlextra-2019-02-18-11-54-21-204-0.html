@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Newman Summary Report</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet prefetch" href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github-gist.min.css">
+
+<style>
+body {
+  padding-top:30px;
+}
+
+body, html {
+  height:100%;
+}
+
+.badge-outline-success {
+    color: #27ae60;
+    border: 1px solid #27ae60;
+    background-color: transparent;
+}
+
+.badge-outline {
+    color: #040411;
+    border: 1px solid #040411;
+    background-color: transparent;
+}
+
+.card {
+    overflow:hidden;
+}
+
+.card-body .rotate {
+    z-index: 8;
+    float: right;
+    height: 100%;
+}
+
+.card-body .rotate i {
+    color: rgba(20, 20, 20, 0.15);
+    position: absolute;
+    left: 0;
+    left: auto;
+    right: -10px;
+    bottom: 0;
+    display: block;
+    -webkit-transform: rotate(-44deg);
+    -moz-transform: rotate(-44deg);
+    -o-transform: rotate(-44deg);
+    -ms-transform: rotate(-44deg);
+    transform: rotate(-44deg);
+}
+.dyn-height {
+    max-height:350px;
+    overflow-y:auto;
+}
+
+.nav-pills .nav-link.active {
+    background-color: transparent!important;
+}
+
+#topOfScreen {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  outline: none;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#topOfScreen:hover {
+  background-color: #28a745;
+}
+
+.custom-tab {
+    padding: 10px 15px;
+    margin-right: 3px;
+    border: solid 1px #fff;
+    border-bottom: none;
+    cursor:pointer;
+}
+.custom-tab .active {
+    border-bottom:solid 1px #032a33;
+}
+
+#execution-data {
+    padding: 10px;
+    border: solid 1px #fff;
+    border-top: none;
+}
+
+.card-header .fa {
+  transition: .3s transform ease-in-out;
+}
+.card-header .collapsed .fa {
+  transform: rotate(90deg);
+}
+</style>
+</head>
+<body>
+  <div class="container">
+        <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+            <li class="nav-item bg-info active" data-toggle="tooltip" title="Click to view the Summary">
+                <a class="nav-link text-white" id="pills-summary-tab" data-toggle="pill" href="#pills-summary" role="tab" aria-controls="pills-summary" aria-selected="true">Summary</a>
+            </li>
+            <li class="nav-item bg-success" data-toggle="tooltip" title="Click to view the Requests">
+                <a class="nav-link text-white" id="pills-requests-tab" data-toggle="pill" href="#pills-requests" role="tab" aria-controls="pills-requests" aria-selected="false">Requests <span class="badge badge-light">4</span></a>
+            </li>
+            <li class="nav-item bg-danger" data-toggle="tooltip" title="Click to view the Failed Tests">
+                <a class="nav-link text-white" id="pills-failed-tab" data-toggle="pill" href="#pills-failed" role="tab" aria-controls="pills-failed" aria-selected="false">Failed Tests <span class="badge badge-light">0</span></a>
+            </li>
+            <li class="nav-item bg-warning" data-toggle="tooltip" title="Click to view the Skipped Tests">
+                <a class="nav-link text-white" id="pills-skipped-tab" data-toggle="pill" href="#pills-skipped" role="tab" aria-controls="pills-skipped" aria-selected="false">Skipped Tests <span class="badge badge-light">0</span></a>
+            </li>
+            </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-summary" role="tabcard" aria-labelledby="pills-summary-tab"> 
+<div class="row">
+  <div class="col-md-9 col-lg-12 main">
+   <h1 class="display-2 text-center">Newman Run Dashboard</h1>
+   <h4 class="text-center">Monday, 18 February 2019 17:24:21</h4>
+   <div class="row">
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-success">
+      <div class="card-body bg-info">
+       <div class="rotate">
+        <i class="fa fa-retweet fa-5x"></i>
+       </div>
+       <h6 class="text-uppercase">Iterations</h6>
+       <h1 class="display-1">1</h1>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-danger">
+      <div class="card-body bg-success">
+       <div class="rotate">
+        <i class="fa fa-list fa-4x"></i>
+       </div>
+       <h6 class="text-uppercase">Total Assertions</h6>
+       <h1 class="display-1">16</h1>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-info">
+      <div class="card-body bg-success">
+       <div class="rotate">
+        <i class="fa fa-plus-circle fa-5x"></i>
+       </div>
+       <h6 class="text-uppercase">Total Failed Tests</h6>
+       <h1 class="display-1">0</h1>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-warning">
+      <div class="card-body bg-warning">
+       <div class="rotate">
+        <i class="fa fa-share fa-5x"></i>
+       </div>
+       <h6 class="text-uppercase">Total Skipped Tests</h6>
+       <h1 class="display-1">0</h1>
+      </div>
+     </div>
+    </div>
+   </div>
+   <hr>
+    <div class="row">
+    <div class="col">
+        <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="card border-info">
+                <div class="card-body">
+                <h5 class="card-title text-uppercase text-white text-center bg-info">File Information</h5>
+                <span><i class="fas fa-file-code"></i></span><strong> Collection:</strong> Test-Customer_Also_Bought<br>
+                <span><i class="fas fa-file-code"></i></span><strong> Environment:</strong> preprod<br>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="card border-info">
+                <div class="card-body">
+                <h5 class="card-title text-uppercase text-white text-center bg-info">Timings and Data</h5>
+                <span><i class="fas fa-stopwatch"></i></span><strong> Total run duration:</strong> 13.2s<br>
+                <span><i class="fas fa-database"></i></span><strong> Total data received:</strong> 2.03KB<br>
+                <span><i class="fas fa-stopwatch"></i></span><strong> Average response time:</strong> 3.2s<br>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-inverse">
+                    <tr class="text-center">
+                        <th class="text-uppercase">Summary Item</th>
+                        <th class="text-uppercase">Total</th>
+                        <th class="text-uppercase">Failed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Requests</td>
+                        <td class="text-center">4</td>
+                        <td class="text-center">0</td>
+                    </tr>
+                    <tr>
+                        <td>Prerequest Scripts</td>
+                        <td class="text-center">0</td>
+                        <td class="text-center">0</td>
+                    </tr>
+                    <tr>
+                        <td>Test Scripts</td>
+                        <td class="text-center">4</td>
+                        <td class="text-center">0</td>
+                    </tr>
+                    <tr class="">
+                        <td>Assertions</td>
+                        <td class="text-center">16</td>
+                        <td class="text-center">0</td>
+                    </tr>
+                    <tr class="">
+                        <td>Skipped Tests</td>
+                        <td class="text-center">0</td>
+                        <td class="text-center">-</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    <hr>
+   </div>
+   </div>
+  </div>
+ </div>
+        </div>
+            <div class="tab-pane fade" id="pills-failed" role="tabcard" aria-labelledby="pills-failed-tab">
+
+                <div class="alert alert-success text-uppercase text-center">
+                     <br><br><h1 class="text-center">There are no failed tests <span><i class="far fa-thumbs-up"></i></span></h1><br><br>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="pills-skipped" role="tabcard" aria-labelledby="pills-skipped-tab">
+
+                <div class="alert alert-success text-uppercase text-center">
+                    <br><br><h1 class="text-center">There are no skipped tests <span><i class="far fa-thumbs-up"></i></span></h1><br><br>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-logs" role="tabcard" aria-labelledby="pills-logs-tab">
+
+            </div> 
+            <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
+            
+            <button class="btn btn-outline-success btn-sm" onclick="topFunction()" id="topOfScreen">Go To Top</button>
+
+    <div class="text-uppercase" id="execution-menu">
+        <h6>1 Iteration available to view</h6>
+        <ul class="nav nav-tabs">
+        </ul>
+    </div>
+	<div class="tab-content" id="execution-data">
+            <div class="card-deck iteration-0">
+            <div class="row iteration-0">
+                <div class="col-sm-12 mb-3 iteration-0">
+                <div class="card iteration-0">
+                    <div class="card-header  bg-success iteration-0">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-11f2eb5f-17c0-4981-b1c1-28ccfd87feb7" aria-expanded="false" aria-controls="collapse" id="requests-11f2eb5f-17c0-4981-b1c1-28ccfd87feb7" class="collapsed text-white z-block">
+                    Iteration: 1 - NykaaMan-Customer Also Bought : Catalog_tag_filter set as men <i class="float-lg-right fa fa-chevron-down"></i>
+                </a>
+                    </div>
+                    <div id="collapse-11f2eb5f-17c0-4981-b1c1-28ccfd87feb7" class="collapse" aria-labelledby="requests-11f2eb5f-17c0-4981-b1c1-28ccfd87feb7">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
+                                        <div class="dyn-height">
+                                            <code id="description">- Catalog tag filter is set as men.
+        - Response for the API should be null.
+        - Check the response</code>
+                                        </div>
+                                    </div>                    
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request Method:</strong> <span class="badge-outline-success badge badge-success"> GET</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="https://preprod.nykaaman.com/app-api/index.php/products/customer_also_bought_gludo?catalog_tag_filter&#x3D;men&amp;app_version&#x3D;2.1.2&amp;product_id&#x3D;303830&amp;algo&#x3D;coccurence_direct" target="_blank">https://preprod.nykaaman.com/app-api/index.php/products/customer_also_bought_gludo?catalog_tag_filter&#x3D;men&amp;app_version&#x3D;2.1.2&amp;product_id&#x3D;303830&amp;algo&#x3D;coccurence_direct</a><br>
+                                    </div>
+                                </div>
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 200 - OK</span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 6.2s</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 118B</span><br>
+                                    <hr>
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
+                                    <div>
+                                        <div class="progress" style="height: 40px;">
+                                            <div class="progress-bar  bg-success" style="width: 100%" role="progressbar">
+                                            <h5><strong>100 %</strong></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
+                                        <div class="dyn-height">
+                                                <pre><code class="prettyPrint">[{&quot;key&quot;:&quot;Date&quot;,&quot;value&quot;:&quot;Mon, 18 Feb 2019 11:54:14 GMT&quot;},{&quot;key&quot;:&quot;Content-Type&quot;,&quot;value&quot;:&quot;application/json&quot;},{&quot;key&quot;:&quot;Content-Length&quot;,&quot;value&quot;:&quot;120&quot;},{&quot;key&quot;:&quot;Connection&quot;,&quot;value&quot;:&quot;keep-alive&quot;},{&quot;key&quot;:&quot;Server&quot;,&quot;value&quot;:&quot;nginx/1.14.0&quot;},{&quot;key&quot;:&quot;Vary&quot;,&quot;value&quot;:&quot;Accept-Encoding&quot;},{&quot;key&quot;:&quot;X-Powered-By&quot;,&quot;value&quot;:&quot;PHP/5.6.38-2+ubuntu14.04.1+deb.sury.org+1&quot;},{&quot;key&quot;:&quot;Content-Encoding&quot;,&quot;value&quot;:&quot;gzip&quot;},{&quot;key&quot;:&quot;Accept-Ranges&quot;,&quot;value&quot;:&quot;bytes&quot;},{&quot;key&quot;:&quot;X-Cache&quot;,&quot;value&quot;:&quot;MISS&quot;}]</code></pre>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
+                                        <div class="dyn-height">
+                                                <pre><code id="copyText-43cd59e3-4539-46de-8971-88236df51523" class="prettyPrint">
+        {&quot;status&quot;:&quot;fail&quot;,&quot;error&quot;:1020,&quot;response&quot;:null,&quot;type&quot;:&quot;none&quot;,&quot;message&quot;:&quot;api_status is inactive from backend for men.&quot;}</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-43cd59e3-4539-46de-8971-88236df51523">Copy to Clipboard</button>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card border-info">
+                                <div class="card-body">
+                                <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table table-hover">
+                                        <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>response is ok</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Status is fail</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Error code should be verified</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>error message should be verified</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>response body should be null</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr class="bg-light">
+                                                    <td><strong>Total</strong></td>
+                                                    <td class="text-center">5</td>
+                                                    <td class="text-center">0</td>
+                                                    <td class="text-center">0</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                
+                                </div>
+                            </div>
+                        </div>           
+                    </div>
+                    </div>
+                </div>      
+                </div>
+            </div>
+            </div>   
+            <div class="card-deck iteration-0">
+            <div class="row iteration-0">
+                <div class="col-sm-12 mb-3 iteration-0">
+                <div class="card iteration-0">
+                    <div class="card-header  bg-success iteration-0">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-e2778afd-8656-4430-893d-e9e09d1decc6" aria-expanded="false" aria-controls="collapse" id="requests-e2778afd-8656-4430-893d-e9e09d1decc6" class="collapsed text-white z-block">
+                    Iteration: 1 - NykaaMan-Customer Also Bought : Catalog_tag_filter set as nykaa <i class="float-lg-right fa fa-chevron-down"></i>
+                </a>
+                    </div>
+                    <div id="collapse-e2778afd-8656-4430-893d-e9e09d1decc6" class="collapse" aria-labelledby="requests-e2778afd-8656-4430-893d-e9e09d1decc6">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
+                                        <div class="dyn-height">
+                                            <code id="description">- Catalog tag filter is set as nykaa.
+        - Response for the API should not be null.
+        - Check the response and it should be ok</code>
+                                        </div>
+                                    </div>                    
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request Method:</strong> <span class="badge-outline-success badge badge-success"> GET</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="https://preprod.nykaaman.com/app-api/index.php/products/customer_also_bought_gludo?catalog_tag_filter&#x3D;nykaa&amp;app_version&#x3D;2.1.2&amp;product_id&#x3D;303830&amp;algo&#x3D;coccurence_direct" target="_blank">https://preprod.nykaaman.com/app-api/index.php/products/customer_also_bought_gludo?catalog_tag_filter&#x3D;nykaa&amp;app_version&#x3D;2.1.2&amp;product_id&#x3D;303830&amp;algo&#x3D;coccurence_direct</a><br>
+                                    </div>
+                                </div>
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 200 - OK</span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 700ms</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 8.5KB</span><br>
+                                    <hr>
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
+                                    <div>
+                                        <div class="progress" style="height: 40px;">
+                                            <div class="progress-bar  bg-success" style="width: 100%" role="progressbar">
+                                            <h5><strong>100 %</strong></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
+                                        <div class="dyn-height">
+                                                <pre><code class="prettyPrint">[{&quot;key&quot;:&quot;Date&quot;,&quot;value&quot;:&quot;Mon, 18 Feb 2019 11:54:14 GMT&quot;},{&quot;key&quot;:&quot;Content-Type&quot;,&quot;value&quot;:&quot;text/html; charset&#x3D;UTF-8&quot;},{&quot;key&quot;:&quot;Content-Length&quot;,&quot;value&quot;:&quot;1726&quot;},{&quot;key&quot;:&quot;Connection&quot;,&quot;value&quot;:&quot;keep-alive&quot;},{&quot;key&quot;:&quot;Server&quot;,&quot;value&quot;:&quot;nginx/1.14.0&quot;},{&quot;key&quot;:&quot;Vary&quot;,&quot;value&quot;:&quot;Accept-Encoding&quot;},{&quot;key&quot;:&quot;X-Powered-By&quot;,&quot;value&quot;:&quot;PHP/5.6.38-2+ubuntu14.04.1+deb.sury.org+1&quot;},{&quot;key&quot;:&quot;Content-Encoding&quot;,&quot;value&quot;:&quot;gzip&quot;},{&quot;key&quot;:&quot;Accept-Ranges&quot;,&quot;value&quot;:&quot;bytes&quot;},{&quot;key&quot;:&quot;X-Cache&quot;,&quot;value&quot;:&quot;MISS&quot;},{&quot;key&quot;:&quot;Cache-Control&quot;,&quot;value&quot;:&quot;no-store, no-cache, must-revalidate, post-check&#x3D;0, pre-check&#x3D;0&quot;},{&quot;key&quot;:&quot;Pragma&quot;,&quot;value&quot;:&quot;no-cache&quot;},{&quot;key&quot;:&quot;Expires&quot;,&quot;value&quot;:&quot;Mon, 31 Mar 2009 10:00:00 GMT&quot;},{&quot;key&quot;:&quot;Age&quot;,&quot;value&quot;:&quot;0&quot;}]</code></pre>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
+                                        <div class="dyn-height">
+                                                <pre><code id="copyText-fefb604b-2cf6-405e-a0a9-408b1bddf87e" class="prettyPrint">
+        {&quot;status&quot;:&quot;success&quot;,&quot;response&quot;:{&quot;title&quot;:&quot;CUSTOMERS ALSO BOUGHT&quot;,&quot;products&quot;:[{&quot;id&quot;:&quot;303827&quot;,&quot;name&quot;:&quot;Dove Men+Care Antiperspirant Deodorant Mineral + Sage&quot;,&quot;sku&quot;:&quot;8710908553820&quot;,&quot;price&quot;:225,&quot;final_price&quot;:169,&quot;discount&quot;:25,&quot;expdt&quot;:null,&quot;brand_name&quot;:&quot;&quot;,&quot;explore_more&quot;:null,&quot;primary_categories&quot;:null,&quot;is_kit_combo&quot;:null,&quot;mrp_freeze&quot;:null,&quot;is_saleable&quot;:true,&quot;gludo_stock&quot;:true,&quot;offers&quot;:0,&quot;rating&quot;:4.1,&quot;is_backorder&quot;:0,&quot;image_url&quot;:&quot;https:\/\/adn-static1.nykaa.com\/media\/catalog\/product\/tr:h-200,w-200,cm-pad_resize\/8\/7\/8710908553820_dovemencare_elements_minerals_150ml_h1.jpg&quot;,&quot;pack_size&quot;:&quot;150ml&quot;,&quot;type&quot;:&quot;simple&quot;,&quot;fbn&quot;:0,&quot;slug&quot;:&quot;dove-men-care-antiperspirant-deodorant-mineral-sage-150-ml\/p\/303827&quot;,&quot;from_gludo&quot;:1,&quot;rating_count&quot;:14,&quot;category_ids&quot;:[&quot;18&quot;,&quot;36&quot;,&quot;53&quot;,&quot;55&quot;,&quot;77&quot;,&quot;377&quot;,&quot;587&quot;,&quot;609&quot;,&quot;979&quot;,&quot;983&quot;,&quot;1321&quot;,&quot;1323&quot;,&quot;1380&quot;,&quot;1650&quot;,&quot;2558&quot;,&quot;3383&quot;,&quot;3389&quot;,&quot;3392&quot;,&quot;4597&quot;,&quot;4600&quot;,&quot;5953&quot;,&quot;5959&quot;,&quot;7156&quot;,&quot;7287&quot;,&quot;7335&quot;,&quot;7336&quot;,&quot;7443&quot;,&quot;7514&quot;,&quot;7768&quot;,&quot;7788&quot;,&quot;7801&quot;,&quot;7804&quot;,&quot;7916&quot;,&quot;8925&quot;,&quot;8949&quot;,&quot;9150&quot;,&quot;9235&quot;],&quot;brand_ids&quot;:[&quot;609&quot;],&quot;show_wishlist_button&quot;:0,&quot;button_text&quot;:&quot;ADD TO BAG&quot;,&quot;is_lux&quot;:0,&quot;object_type&quot;:&quot;product&quot;},{&quot;id&quot;:&quot;303829&quot;,&quot;name&quot;:&quot;Dove Men+Care Complete Care Fortifying 2-in-1 Shampoo and Conditioner&quot;,&quot;sku&quot;:&quot;79400553805&quot;,&quot;price&quot;:325,&quot;final_price&quot;:244,&quot;discount&quot;:25,&quot;expdt&quot;:null,&quot;brand_name&quot;:&quot;&quot;,&quot;explore_more&quot;:null,&quot;primary_categories&quot;:null,&quot;is_kit_combo&quot;:null,&quot;mrp_freeze&quot;:null,&quot;is_saleable&quot;:true,&quot;gludo_stock&quot;:true,&quot;offers&quot;:0,&quot;rating&quot;:4.6,&quot;is_backorder&quot;:0,&quot;image_url&quot;:&quot;https:\/\/adn-static3.nykaa.com\/media\/catalog\/product\/tr:h-200,w-200,cm-pad_resize\/0\/7\/079400553805_dovemencare_completecare_355ml_h1.jpg&quot;,&quot;pack_size&quot;:&quot;355ml&quot;,&quot;type&quot;:&quot;simple&quot;,&quot;fbn&quot;:0,&quot;slug&quot;:&quot;dove-men-care-complete-care-fortifying-2-in-1-shampoo-and-conditioner-355ml\/p\/303829&quot;,&quot;from_gludo&quot;:1,&quot;rating_count&quot;:12,&quot;category_ids&quot;:[&quot;24&quot;,&quot;25&quot;,&quot;35&quot;,&quot;77&quot;,&quot;316&quot;,&quot;319&quot;,&quot;587&quot;,&quot;609&quot;,&quot;1292&quot;,&quot;1293&quot;,&quot;1294&quot;,&quot;1380&quot;,&quot;1392&quot;,&quot;1393&quot;,&quot;2046&quot;,&quot;2058&quot;,&quot;2558&quot;,&quot;2630&quot;,&quot;2854&quot;,&quot;3390&quot;,&quot;4600&quot;,&quot;5563&quot;,&quot;5714&quot;,&quot;5721&quot;,&quot;5726&quot;,&quot;5953&quot;,&quot;5959&quot;,&quot;6872&quot;,&quot;7081&quot;,&quot;7156&quot;,&quot;7287&quot;,&quot;7296&quot;,&quot;7297&quot;,&quot;7298&quot;,&quot;7376&quot;,&quot;7389&quot;,&quot;7443&quot;,&quot;7444&quot;,&quot;7446&quot;,&quot;7449&quot;,&quot;7514&quot;,&quot;7768&quot;,&quot;7789&quot;,&quot;7802&quot;,&quot;7820&quot;,&quot;7916&quot;,&quot;8241&quot;,&quot;8486&quot;,&quot;8492&quot;,&quot;8617&quot;,&quot;8689&quot;,&quot;8925&quot;,&quot;9041&quot;,&quot;9150&quot;,&quot;9311&quot;,&quot;9325&quot;],&quot;brand_ids&quot;:[&quot;609&quot;],&quot;show_wishlist_button&quot;:0,&quot;button_text&quot;:&quot;ADD TO BAG&quot;,&quot;is_lux&quot;:0,&quot;object_type&quot;:&quot;product&quot;},{&quot;id&quot;:&quot;303819&quot;,&quot;name&quot;:&quot;Dove Men+Care Body and Face Wash Clean Comfort&quot;,&quot;sku&quot;:&quot;8717644627631&quot;,&quot;price&quot;:199,&quot;final_price&quot;:149,&quot;discount&quot;:25,&quot;expdt&quot;:null,&quot;brand_name&quot;:&quot;&quot;,&quot;explore_more&quot;:null,&quot;primary_categories&quot;:null,&quot;is_kit_combo&quot;:null,&quot;mrp_freeze&quot;:null,&quot;is_saleable&quot;:true,&quot;gludo_stock&quot;:true,&quot;offers&quot;:0,&quot;rating&quot;:4.2,&quot;is_backorder&quot;:0,&quot;image_url&quot;:&quot;https:\/\/adn-static3.nykaa.com\/media\/catalog\/product\/tr:h-200,w-200,cm-pad_resize\/8\/7\/8717644598924_dove_men_care_body_wash_clean_comfort_250ml_h1_2.jpg&quot;,&quot;pack_size&quot;:&quot;250ml&quot;,&quot;type&quot;:&quot;simple&quot;,&quot;fbn&quot;:0,&quot;slug&quot;:&quot;dove-men-care-body-and-face-wash-clean-comfort.html&quot;,&quot;from_gludo&quot;:1,&quot;rating_count&quot;:13,&quot;category_ids&quot;:[&quot;35&quot;,&quot;77&quot;,&quot;368&quot;,&quot;587&quot;,&quot;609&quot;,&quot;1300&quot;,&quot;1301&quot;,&quot;1310&quot;,&quot;1311&quot;,&quot;1380&quot;,&quot;1381&quot;,&quot;1387&quot;,&quot;2558&quot;,&quot;4597&quot;,&quot;4600&quot;,&quot;5722&quot;,&quot;7156&quot;,&quot;7287&quot;,&quot;7303&quot;,&quot;7305&quot;,&quot;7312&quot;,&quot;7313&quot;,&quot;7314&quot;,&quot;7443&quot;,&quot;7514&quot;,&quot;8377&quot;,&quot;8417&quot;,&quot;8426&quot;,&quot;8619&quot;,&quot;8924&quot;,&quot;9150&quot;,&quot;9325&quot;],&quot;brand_ids&quot;:[&quot;609&quot;],&quot;show_wishlist_button&quot;:0,&quot;button_text&quot;:&quot;ADD TO BAG&quot;,&quot;is_lux&quot;:0,&quot;object_type&quot;:&quot;product&quot;},{&quot;id&quot;:&quot;303828&quot;,&quot;name&quot;:&quot;Dove Men+Care Fresh &amp; Clean Fortifying 2-in-1 Shampoo and Conditioner&quot;,&quot;sku&quot;:&quot;79400266545&quot;,&quot;price&quot;:350,&quot;final_price&quot;:263,&quot;discount&quot;:25,&quot;expdt&quot;:null,&quot;brand_name&quot;:&quot;&quot;,&quot;explore_more&quot;:null,&quot;primary_categories&quot;:null,&quot;is_kit_combo&quot;:null,&quot;mrp_freeze&quot;:null,&quot;is_saleable&quot;:true,&quot;gludo_stock&quot;:true,&quot;offers&quot;:0,&quot;rating&quot;:4.6,&quot;is_backorder&quot;:0,&quot;image_url&quot;:&quot;https:\/\/adn-static3.nykaa.com\/media\/catalog\/product\/tr:h-200,w-200,cm-pad_resize\/0\/7\/079400266545_dovemencare_fresh_clean_355ml_h1.jpg&quot;,&quot;pack_size&quot;:&quot;355ml&quot;,&quot;type&quot;:&quot;simple&quot;,&quot;fbn&quot;:0,&quot;slug&quot;:&quot;dove-men-care-fresh-clean-fortifying-2-in-1-shampoo-and-conditioner-355ml\/p\/303828&quot;,&quot;from_gludo&quot;:1,&quot;rating_count&quot;:18,&quot;category_ids&quot;:[&quot;24&quot;,&quot;25&quot;,&quot;35&quot;,&quot;77&quot;,&quot;316&quot;,&quot;319&quot;,&quot;587&quot;,&quot;609&quot;,&quot;1292&quot;,&quot;1293&quot;,&quot;1294&quot;,&quot;1380&quot;,&quot;1392&quot;,&quot;1393&quot;,&quot;2558&quot;,&quot;4600&quot;,&quot;5563&quot;,&quot;5726&quot;,&quot;5953&quot;,&quot;5959&quot;,&quot;6872&quot;,&quot;7081&quot;,&quot;7156&quot;,&quot;7287&quot;,&quot;7296&quot;,&quot;7297&quot;,&quot;7298&quot;,&quot;7443&quot;,&quot;7444&quot;,&quot;7446&quot;,&quot;7449&quot;,&quot;7514&quot;,&quot;7768&quot;,&quot;7789&quot;,&quot;7802&quot;,&quot;7916&quot;,&quot;8620&quot;,&quot;8689&quot;,&quot;8925&quot;,&quot;9041&quot;,&quot;9150&quot;,&quot;9311&quot;,&quot;9325&quot;],&quot;brand_ids&quot;:[&quot;609&quot;],&quot;show_wishlist_button&quot;:0,&quot;button_text&quot;:&quot;ADD TO BAG&quot;,&quot;is_lux&quot;:0,&quot;object_type&quot;:&quot;product&quot;},{&quot;id&quot;:&quot;303824&quot;,&quot;name&quot;:&quot;Dove Men+Care Antiperspirant Deodorant Cool Fresh&quot;,&quot;sku&quot;:&quot;8710908325731&quot;,&quot;price&quot;:225,&quot;final_price&quot;:169,&quot;discount&quot;:25,&quot;expdt&quot;:null,&quot;brand_name&quot;:&quot;&quot;,&quot;explore_more&quot;:null,&quot;primary_categories&quot;:null,&quot;is_kit_combo&quot;:null,&quot;mrp_freeze&quot;:null,&quot;is_saleable&quot;:true,&quot;gludo_stock&quot;:true,&quot;offers&quot;:0,&quot;rating&quot;:3,&quot;is_backorder&quot;:0,&quot;image_url&quot;:&quot;https:\/\/adn-static2.nykaa.com\/media\/catalog\/product\/tr:h-200,w-200,cm-pad_resize\/8\/7\/8710908325731_dovemencare_cool_fresh_150ml_h1.jpg&quot;,&quot;pack_size&quot;:&quot;150ml&quot;,&quot;type&quot;:&quot;simple&quot;,&quot;fbn&quot;:0,&quot;slug&quot;:&quot;dove-men-care-antiperspirant-deodorant-cool-fresh-150-ml\/p\/303824&quot;,&quot;from_gludo&quot;:1,&quot;rating_count&quot;:3,&quot;category_ids&quot;:[&quot;18&quot;,&quot;36&quot;,&quot;53&quot;,&quot;55&quot;,&quot;77&quot;,&quot;377&quot;,&quot;587&quot;,&quot;609&quot;,&quot;979&quot;,&quot;983&quot;,&quot;1321&quot;,&quot;1323&quot;,&quot;1380&quot;,&quot;1650&quot;,&quot;2558&quot;,&quot;3383&quot;,&quot;3389&quot;,&quot;3392&quot;,&quot;4597&quot;,&quot;4600&quot;,&quot;5953&quot;,&quot;5959&quot;,&quot;7156&quot;,&quot;7287&quot;,&quot;7335&quot;,&quot;7336&quot;,&quot;7443&quot;,&quot;7514&quot;,&quot;7768&quot;,&quot;7788&quot;,&quot;7801&quot;,&quot;7804&quot;,&quot;7916&quot;,&quot;8925&quot;,&quot;8949&quot;,&quot;9150&quot;,&quot;9235&quot;],&quot;brand_ids&quot;:[&quot;609&quot;],&quot;show_wishlist_button&quot;:0,&quot;button_text&quot;:&quot;ADD TO BAG&quot;,&quot;is_lux&quot;:0,&quot;object_type&quot;:&quot;product&quot;},{&quot;id&quot;:&quot;303825&quot;,&quot;name&quot;:&quot;Dove Men+Care Antiperspirant Deodorant Extra Fresh&quot;,&quot;sku&quot;:&quot;8717644579886&quot;,&quot;price&quot;:225,&quot;final_price&quot;:169,&quot;discount&quot;:25,&quot;expdt&quot;:null,&quot;brand_name&quot;:&quot;&quot;,&quot;explore_more&quot;:null,&quot;primary_categories&quot;:null,&quot;is_kit_combo&quot;:null,&quot;mrp_freeze&quot;:null,&quot;is_saleable&quot;:true,&quot;gludo_stock&quot;:true,&quot;offers&quot;:0,&quot;rating&quot;:4.1,&quot;is_backorder&quot;:0,&quot;image_url&quot;:&quot;https:\/\/adn-static1.nykaa.com\/media\/catalog\/product\/tr:h-200,w-200,cm-pad_resize\/8\/7\/8717644579886_dovemencare_extra_fresh_150ml_h1.jpg&quot;,&quot;pack_size&quot;:&quot;150ml&quot;,&quot;type&quot;:&quot;simple&quot;,&quot;fbn&quot;:0,&quot;slug&quot;:&quot;dove-men-care-antiperspirant-deodorant-extra-fresh-150-ml\/p\/303825&quot;,&quot;from_gludo&quot;:1,&quot;rating_count&quot;:10,&quot;category_ids&quot;:[&quot;18&quot;,&quot;36&quot;,&quot;53&quot;,&quot;55&quot;,&quot;77&quot;,&quot;377&quot;,&quot;587&quot;,&quot;609&quot;,&quot;979&quot;,&quot;983&quot;,&quot;1321&quot;,&quot;1323&quot;,&quot;1380&quot;,&quot;1650&quot;,&quot;2558&quot;,&quot;3383&quot;,&quot;3389&quot;,&quot;3390&quot;,&quot;3392&quot;,&quot;4597&quot;,&quot;4600&quot;,&quot;5953&quot;,&quot;5959&quot;,&quot;7156&quot;,&quot;7287&quot;,&quot;7335&quot;,&quot;7336&quot;,&quot;7443&quot;,&quot;7514&quot;,&quot;7768&quot;,&quot;7788&quot;,&quot;7801&quot;,&quot;7804&quot;,&quot;7916&quot;,&quot;8925&quot;,&quot;8949&quot;,&quot;9150&quot;,&quot;9235&quot;],&quot;brand_ids&quot;:[&quot;609&quot;],&quot;show_wishlist_button&quot;:0,&quot;button_text&quot;:&quot;ADD TO BAG&quot;,&quot;is_lux&quot;:0,&quot;object_type&quot;:&quot;product&quot;},{&quot;id&quot;:&quot;326430&quot;,&quot;name&quot;:&quot;Dove Men+Care Antiperspirant Deodorant Silver Control&quot;,&quot;sku&quot;:&quot;8712561255820&quot;,&quot;price&quot;:225,&quot;final_price&quot;:169,&quot;discount&quot;:25,&quot;expdt&quot;:null,&quot;brand_name&quot;:&quot;&quot;,&quot;explore_more&quot;:null,&quot;primary_categories&quot;:null,&quot;is_kit_combo&quot;:null,&quot;mrp_freeze&quot;:null,&quot;is_saleable&quot;:true,&quot;gludo_stock&quot;:true,&quot;offers&quot;:0,&quot;rating&quot;:4,&quot;is_backorder&quot;:0,&quot;image_url&quot;:&quot;https:\/\/adn-static3.nykaa.com\/media\/catalog\/product\/tr:h-200,w-200,cm-pad_resize\/8\/7\/8712561255820_dovemencare_silver_control_150ml_h1.jpg&quot;,&quot;pack_size&quot;:&quot;150ml&quot;,&quot;type&quot;:&quot;simple&quot;,&quot;fbn&quot;:0,&quot;slug&quot;:&quot;dove-men-care-antiperspirant-deodorant-silver-control-150-ml\/p\/326430&quot;,&quot;from_gludo&quot;:1,&quot;rating_count&quot;:1,&quot;category_ids&quot;:[&quot;18&quot;,&quot;36&quot;,&quot;53&quot;,&quot;55&quot;,&quot;77&quot;,&quot;377&quot;,&quot;587&quot;,&quot;609&quot;,&quot;979&quot;,&quot;983&quot;,&quot;1321&quot;,&quot;1323&quot;,&quot;1380&quot;,&quot;1650&quot;,&quot;2558&quot;,&quot;3383&quot;,&quot;3389&quot;,&quot;3392&quot;,&quot;4597&quot;,&quot;4600&quot;,&quot;7156&quot;,&quot;7287&quot;,&quot;7335&quot;,&quot;7336&quot;,&quot;7443&quot;,&quot;7514&quot;,&quot;7768&quot;,&quot;7788&quot;,&quot;7801&quot;,&quot;7804&quot;,&quot;7916&quot;,&quot;8925&quot;,&quot;8949&quot;,&quot;9150&quot;,&quot;9235&quot;],&quot;brand_ids&quot;:[&quot;609&quot;],&quot;show_wishlist_button&quot;:0,&quot;button_text&quot;:&quot;ADD TO BAG&quot;,&quot;is_lux&quot;:0,&quot;object_type&quot;:&quot;product&quot;},{&quot;id&quot;:&quot;10313&quot;,&quot;name&quot;:&quot;Tresemme Climate Control Conditioner&quot;,&quot;sku&quot;:&quot;TRES_CLIMCOND&quot;,&quot;price&quot;:187,&quot;final_price&quot;:187,&quot;discount&quot;:0,&quot;expdt&quot;:null,&quot;brand_name&quot;:&quot;&quot;,&quot;explore_more&quot;:null,&quot;primary_categories&quot;:null,&quot;is_kit_combo&quot;:null,&quot;mrp_freeze&quot;:null,&quot;is_saleable&quot;:true,&quot;gludo_stock&quot;:true,&quot;offers&quot;:0,&quot;rating&quot;:4.3,&quot;is_backorder&quot;:0,&quot;image_url&quot;:&quot;https:\/\/adn-static1.nykaa.com\/media\/catalog\/product\/tr:h-200,w-200,cm-pad_resize\/1\/1\/11610_1.jpg&quot;,&quot;type&quot;:&quot;configurable&quot;,&quot;fbn&quot;:0,&quot;slug&quot;:&quot;tresemme-climate-control-conditioner\/p\/10313&quot;,&quot;from_gludo&quot;:1,&quot;rating_count&quot;:57,&quot;category_ids&quot;:[&quot;24&quot;,&quot;25&quot;,&quot;35&quot;,&quot;319&quot;,&quot;341&quot;,&quot;366&quot;,&quot;587&quot;,&quot;607&quot;,&quot;1284&quot;,&quot;1380&quot;,&quot;1382&quot;,&quot;1393&quot;,&quot;1453&quot;,&quot;2087&quot;,&quot;2115&quot;,&quot;2117&quot;,&quot;2356&quot;,&quot;2424&quot;,&quot;2678&quot;,&quot;2692&quot;,&quot;2695&quot;,&quot;2696&quot;,&quot;2697&quot;,&quot;2807&quot;,&quot;3584&quot;,&quot;3590&quot;,&quot;3594&quot;,&quot;3842&quot;,&quot;3847&quot;,&quot;3985&quot;,&quot;4151&quot;,&quot;4191&quot;,&quot;4400&quot;,&quot;4481&quot;,&quot;4598&quot;,&quot;4599&quot;,&quot;4608&quot;,&quot;4609&quot;,&quot;4732&quot;,&quot;4908&quot;,&quot;5721&quot;,&quot;5726&quot;,&quot;5834&quot;,&quot;6357&quot;,&quot;6368&quot;,&quot;6872&quot;,&quot;6961&quot;,&quot;6963&quot;,&quot;7287&quot;,&quot;7296&quot;,&quot;7298&quot;,&quot;7376&quot;,&quot;7382&quot;,&quot;7383&quot;,&quot;7384&quot;,&quot;7385&quot;,&quot;7389&quot;,&quot;7444&quot;,&quot;7447&quot;,&quot;7450&quot;,&quot;7496&quot;,&quot;7514&quot;,&quot;7539&quot;,&quot;7724&quot;,&quot;7768&quot;,&quot;7788&quot;,&quot;7802&quot;,&quot;7820&quot;,&quot;7916&quot;,&quot;8689&quot;,&quot;8924&quot;,&quot;9041&quot;,&quot;9254&quot;,&quot;9311&quot;,&quot;9325&quot;],&quot;brand_ids&quot;:[&quot;607&quot;],&quot;show_wishlist_button&quot;:0,&quot;button_text&quot;:&quot;ADD TO BAG&quot;,&quot;is_lux&quot;:0,&quot;configurable_type&quot;:&quot;weight_configure&quot;,&quot;configuration_count&quot;:1,&quot;option_count&quot;:1,&quot;object_type&quot;:&quot;product&quot;}]},&quot;type&quot;:&quot;object&quot;}</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-fefb604b-2cf6-405e-a0a9-408b1bddf87e">Copy to Clipboard</button>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card border-info">
+                                <div class="card-body">
+                                <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table table-hover">
+                                        <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>response is ok</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Status is success</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>response body should not be null</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr class="bg-light">
+                                                    <td><strong>Total</strong></td>
+                                                    <td class="text-center">3</td>
+                                                    <td class="text-center">0</td>
+                                                    <td class="text-center">0</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                
+                                </div>
+                            </div>
+                        </div>           
+                    </div>
+                    </div>
+                </div>      
+                </div>
+            </div>
+            </div>   
+            <div class="card-deck iteration-0">
+            <div class="row iteration-0">
+                <div class="col-sm-12 mb-3 iteration-0">
+                <div class="card iteration-0">
+                    <div class="card-header  bg-success iteration-0">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-ff4e252b-7b57-47e7-a3f3-002b299cbcea" aria-expanded="false" aria-controls="collapse" id="requests-ff4e252b-7b57-47e7-a3f3-002b299cbcea" class="collapsed text-white z-block">
+                    Iteration: 1 - Nykaa-Customer Also Bought : Catalog_tag_filter set as men <i class="float-lg-right fa fa-chevron-down"></i>
+                </a>
+                    </div>
+                    <div id="collapse-ff4e252b-7b57-47e7-a3f3-002b299cbcea" class="collapse" aria-labelledby="requests-ff4e252b-7b57-47e7-a3f3-002b299cbcea">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
+                                        <div class="dyn-height">
+                                            <code id="description">- Catalog tag filter is set as men.
+        - Response for the API should be null.
+        - Check the response</code>
+                                        </div>
+                                    </div>                    
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request Method:</strong> <span class="badge-outline-success badge badge-success"> GET</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="https://preprod.nykaa.com/app-api/index.php/products/customer_also_bought_gludo?app_version&#x3D;2.1.2&amp;product_id&#x3D;300809&amp;algo&#x3D;coccurence_sqrt&amp;catalog_tag_filter&#x3D;men" target="_blank">https://preprod.nykaa.com/app-api/index.php/products/customer_also_bought_gludo?app_version&#x3D;2.1.2&amp;product_id&#x3D;300809&amp;algo&#x3D;coccurence_sqrt&amp;catalog_tag_filter&#x3D;men</a><br>
+                                    </div>
+                                </div>
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 200 - OK</span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 5.7s</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 118B</span><br>
+                                    <hr>
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
+                                    <div>
+                                        <div class="progress" style="height: 40px;">
+                                            <div class="progress-bar  bg-success" style="width: 100%" role="progressbar">
+                                            <h5><strong>100 %</strong></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
+                                        <div class="dyn-height">
+                                                <pre><code class="prettyPrint">[{&quot;key&quot;:&quot;Accept-Ranges&quot;,&quot;value&quot;:&quot;bytes&quot;},{&quot;key&quot;:&quot;Content-Type&quot;,&quot;value&quot;:&quot;application/json&quot;},{&quot;key&quot;:&quot;Server&quot;,&quot;value&quot;:&quot;nginx/1.14.0&quot;},{&quot;key&quot;:&quot;X-Powered-By&quot;,&quot;value&quot;:&quot;PHP/5.6.38-2+ubuntu14.04.1+deb.sury.org+1&quot;},{&quot;key&quot;:&quot;Content-Length&quot;,&quot;value&quot;:&quot;118&quot;},{&quot;key&quot;:&quot;Cache-Control&quot;,&quot;value&quot;:&quot;max-age&#x3D;600&quot;},{&quot;key&quot;:&quot;Expires&quot;,&quot;value&quot;:&quot;Mon, 18 Feb 2019 12:04:20 GMT&quot;},{&quot;key&quot;:&quot;Date&quot;,&quot;value&quot;:&quot;Mon, 18 Feb 2019 11:54:20 GMT&quot;},{&quot;key&quot;:&quot;Connection&quot;,&quot;value&quot;:&quot;keep-alive&quot;},{&quot;key&quot;:&quot;Set-Cookie&quot;,&quot;value&quot;:&quot;akavpau_Allow_user&#x3D;1550490920~id&#x3D;ea86a8c56ca1cfaec02dc7f8df731a76; Path&#x3D;/&quot;}]</code></pre>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
+                                        <div class="dyn-height">
+                                                <pre><code id="copyText-b045f4ae-f158-4c3f-8b43-204f5d7b8313" class="prettyPrint">
+        {&quot;status&quot;:&quot;fail&quot;,&quot;error&quot;:1020,&quot;response&quot;:null,&quot;type&quot;:&quot;none&quot;,&quot;message&quot;:&quot;api_status is inactive from backend for men.&quot;}</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-b045f4ae-f158-4c3f-8b43-204f5d7b8313">Copy to Clipboard</button>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card border-info">
+                                <div class="card-body">
+                                <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table table-hover">
+                                        <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>response is ok</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Status is fail</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Error code should be verified</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>error message should be verified</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>response body should be null</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr class="bg-light">
+                                                    <td><strong>Total</strong></td>
+                                                    <td class="text-center">5</td>
+                                                    <td class="text-center">0</td>
+                                                    <td class="text-center">0</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                
+                                </div>
+                            </div>
+                        </div>           
+                    </div>
+                    </div>
+                </div>      
+                </div>
+            </div>
+            </div>   
+            <div class="card-deck iteration-0">
+            <div class="row iteration-0">
+                <div class="col-sm-12 mb-3 iteration-0">
+                <div class="card iteration-0">
+                    <div class="card-header  bg-success iteration-0">
+                        <a data-toggle="collapse" href="#" data-target="#collapse-77216179-da31-4946-ad71-1cb0c2d63b20" aria-expanded="false" aria-controls="collapse" id="requests-77216179-da31-4946-ad71-1cb0c2d63b20" class="collapsed text-white z-block">
+                    Iteration: 1 - Nykaa-Customer Also Bought : Catalog_tag_filter set as nykaa <i class="float-lg-right fa fa-chevron-down"></i>
+                </a>
+                    </div>
+                    <div id="collapse-77216179-da31-4946-ad71-1cb0c2d63b20" class="collapse" aria-labelledby="requests-77216179-da31-4946-ad71-1cb0c2d63b20">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
+                                        <div class="dyn-height">
+                                            <code id="description">- Catalog tag filter is set as nykaa.
+        - Response for the API should not be null.
+        - Check the response and it should be ok.</code>
+                                        </div>
+                                    </div>                    
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request Method:</strong> <span class="badge-outline-success badge badge-success"> GET</span><br>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="https://preprod.nykaa.com/app-api/index.php/products/customer_also_bought_gludo?app_version&#x3D;2.1.2&amp;product_id&#x3D;300809&amp;algo&#x3D;coccurence_sqrt&amp;catalog_tag_filter&#x3D;nykaa" target="_blank">https://preprod.nykaa.com/app-api/index.php/products/customer_also_bought_gludo?app_version&#x3D;2.1.2&amp;product_id&#x3D;300809&amp;algo&#x3D;coccurence_sqrt&amp;catalog_tag_filter&#x3D;nykaa</a><br>
+                                    </div>
+                                </div>
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
+                                    <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> 200 - OK</span><br>
+                                    <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> 384ms</span><br>
+                                    <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> 96B</span><br>
+                                    <hr>
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
+                                    <div>
+                                        <div class="progress" style="height: 40px;">
+                                            <div class="progress-bar  bg-success" style="width: 100%" role="progressbar">
+                                            <h5><strong>100 %</strong></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
+                                        <div class="dyn-height">
+                                                <pre><code class="prettyPrint">[{&quot;key&quot;:&quot;Accept-Ranges&quot;,&quot;value&quot;:&quot;bytes&quot;},{&quot;key&quot;:&quot;Content-Type&quot;,&quot;value&quot;:&quot;text/html; charset&#x3D;UTF-8&quot;},{&quot;key&quot;:&quot;Pragma&quot;,&quot;value&quot;:&quot;no-cache&quot;},{&quot;key&quot;:&quot;Server&quot;,&quot;value&quot;:&quot;nginx/1.14.0&quot;},{&quot;key&quot;:&quot;X-Powered-By&quot;,&quot;value&quot;:&quot;PHP/5.6.38-2+ubuntu14.04.1+deb.sury.org+1&quot;},{&quot;key&quot;:&quot;X-Akamai-Transformed&quot;,&quot;value&quot;:&quot;9 96 0 pmb&#x3D;mRUM,1&quot;},{&quot;key&quot;:&quot;Vary&quot;,&quot;value&quot;:&quot;Accept-Encoding&quot;},{&quot;key&quot;:&quot;Content-Encoding&quot;,&quot;value&quot;:&quot;gzip&quot;},{&quot;key&quot;:&quot;Cache-Control&quot;,&quot;value&quot;:&quot;no-cache, no-store, must-revalidate, post-check&#x3D;0, pre-check&#x3D;0&quot;},{&quot;key&quot;:&quot;Expires&quot;,&quot;value&quot;:&quot;Mon, 18 Feb 2019 11:54:20 GMT&quot;},{&quot;key&quot;:&quot;Date&quot;,&quot;value&quot;:&quot;Mon, 18 Feb 2019 11:54:20 GMT&quot;},{&quot;key&quot;:&quot;Content-Length&quot;,&quot;value&quot;:&quot;111&quot;},{&quot;key&quot;:&quot;Connection&quot;,&quot;value&quot;:&quot;keep-alive&quot;},{&quot;key&quot;:&quot;Set-Cookie&quot;,&quot;value&quot;:&quot;akavpau_Allow_user&#x3D;1550490920~id&#x3D;ea86a8c56ca1cfaec02dc7f8df731a76; Path&#x3D;/&quot;}]</code></pre>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                            <div class="card border-info" style="width: 50rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
+                                        <div class="dyn-height">
+                                                <pre><code id="copyText-bd6c45e9-8f94-42b1-a9d6-345bf7800b2d" class="prettyPrint">
+        {&quot;status&quot;:&quot;success&quot;,&quot;response&quot;:{&quot;title&quot;:&quot;CUSTOMERS ALSO BOUGHT&quot;,&quot;products&quot;:[]},&quot;type&quot;:&quot;object&quot;}</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-bd6c45e9-8f94-42b1-a9d6-345bf7800b2d">Copy to Clipboard</button>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card border-info">
+                                <div class="card-body">
+                                <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table table-hover">
+                                        <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>response is ok</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Status is success</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>response body should not be null</td>
+                                                    <td class="text-center bg-success">1</td>
+                                                    <td class="text-center ">0</td>
+                                                    <td class="text-center ">0</td>
+                                                </tr>
+                                                <tr class="bg-light">
+                                                    <td><strong>Total</strong></td>
+                                                    <td class="text-center">3</td>
+                                                    <td class="text-center">0</td>
+                                                    <td class="text-center">0</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                
+                                </div>
+                            </div>
+                        </div>           
+                    </div>
+                    </div>
+                </div>      
+                </div>
+            </div>
+            </div>   
+        </div>      
+    </div>
+    </div>
+    </div>
+</body>
+</html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip({
+        trigger : 'hover'
+    })
+})
+</script>
+
+<script>
+    function isJSON(data) 
+{
+    var ret = true;
+    try {
+            JSON.parse(data);
+    }catch(e) {
+            ret = false;
+    }
+    return ret;
+}
+
+$(".prettyPrint").each(function () {        
+        var data = $(this).text();
+        // Verify whether data is JSON
+        if(isJSON(data))
+        {
+                obj = JSON.parse(data);
+                data = JSON.stringify(obj, null, 2);
+        }
+        $(this).text(data);
+});
+</script>
+
+
+<!-- Copy Response Body To Clipboard -->
+<script>
+    var clipboard = new ClipboardJS('.copyButton');
+    
+    clipboard.on('success', function(e) {        
+        e.clearSelection();
+        $(".copyButton").addClass("bg-success text-white")
+        e.trigger.textContent = '✔ Copied!';
+        window.setTimeout(function() {
+            $(".copyButton").removeClass("bg-success text-white")
+            e.trigger.textContent = 'Copy to Clipboard';
+        }, 2000);
+    });
+    clipboard.on('error', function(e) {
+        e.clearSelection();
+        $(".copyButton").addClass("bg-danger text-white")
+        e.trigger.textContent = '✗ Not Copied';
+        window.setTimeout(function() {
+            $(".copyButton").removeClass("bg-danger text-white")
+            e.trigger.textContent = 'Copy to Clipboard';
+        }, 2000);
+    });
+
+</script>
+
+<!-- Filter the requests -->
+<script>
+$(document).ready(function(){
+    $('#myFilter').keyup(function (){
+        $('.card').removeClass('d-none');
+        var filter = $(this).val();
+        $('.card').find('.card .card.border-info .card-body h5.card-title:not(:contains("'+filter+'"))').parent().parent().addClass('d-none');
+    })
+})
+</script>
+
+<!-- Render the Description Markdown -->
+<script>
+    const remarkable = new Remarkable();
+    
+    const descriptions = document.querySelectorAll("#description");
+    descriptions.forEach(description => {
+        description.innerHTML = renderHtmlFromMarkdown(description.textContent);
+    });
+    function renderHtmlFromMarkdown(markdown) {
+        return remarkable.render(trim(markdown));
+    }
+    function trim(string) {
+        return string ? string.replace(/^ +| +$/gm, "") : string;
+    }
+</script>
+
+<script>
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("topOfScreen").style.display = "block";
+  } else {
+    document.getElementById("topOfScreen").style.display = "none";
+  }
+}
+
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+<script type="text/javascript">
+    "use strict";
+
+window.onload = function () {
+
+  // hides all blocks of response
+  var allItems = document.querySelectorAll('[class*=iteration-]');
+  allItems.forEach(function(elem){
+    elem.style.display = 'none';
+  });
+
+   
+  let totalIterations = 1;
+   
+
+  let menu = document.querySelector('#execution-menu .nav');
+
+  for(var i = 0; i < totalIterations; i++)
+  {
+    let li = document.createElement('li');
+    li.appendChild(document.createTextNode((i + 1)));
+    li.setAttribute('id', 'iteration-' + i);
+    li.classList.add("custom-tab");
+
+    li.addEventListener('click', function() {
+
+      let allItems = document.querySelectorAll('[class*=iteration-]');
+      allItems.forEach(function(elem) {
+        elem.style.display = 'none';
+      })
+
+      let allMenus = document.querySelectorAll('[id*=iteration-');
+      allMenus.forEach(function(elem){
+        elem.style.borderBottom = 'none';
+      })
+
+      this.style.borderBottom = 'solid 1px #032a33';
+
+      let items = document.querySelectorAll("." + this.id);
+      items.forEach(function(elem) {
+        elem.style.display = elem.style.display == 'block' ? 'none' : 'block';
+      })
+    });
+
+    menu.appendChild(li);
+  }
+
+    //shows first tab data
+  document.getElementById('iteration-0').click();
+}
+</script>

@@ -1,0 +1,626 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Nyk-Aut-Collection",
+		"_postman_id": "0e81de64-af24-b09e-7989-336d863512ce",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all keys from dataEngine as yaml",
+			"request": {
+				"url": {
+					"raw": "http://13.127.152.76:9090/nyk/getdata/tavern?env=prod&platform=nykaa",
+					"protocol": "http",
+					"host": [
+						"13",
+						"127",
+						"152",
+						"76"
+					],
+					"port": "9090",
+					"path": [
+						"nyk",
+						"getdata",
+						"tavern"
+					],
+					"query": [
+						{
+							"key": "env",
+							"value": "prod",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "platform",
+							"value": "nykaa",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					},
+					{
+						"key": "Host",
+						"value": "localhost:8080",
+						"description": ""
+					},
+					{
+						"key": "Content-Length",
+						"value": "41",
+						"description": ""
+					},
+					{
+						"key": "X-Amz-Date",
+						"value": "20200506T122448Z",
+						"description": ""
+					},
+					{
+						"key": "nyk_Token",
+						"value": "AWS4-HMAC-SHA256 Credential=/20200506/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;www_authenticate;x-amz-date, Signature=d9c44e7fbbffd2d7e03fd8b3877bdc1fb2c20c4d8196c7de85773b61d97c115c",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "AWS4-HMAC-SHA256 Credential=/20200506/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;nyk-header;nyk_token;x-amz-date, Signature=69e0e43237784a70d0cf09274c646ebf58bc2580577c1daf25d94f818f133faf",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n\"objectName\":\"HomePage_Login_dropdown_container\",\n\"channel\":\"nykaaDesktop\",\n\"identifier\":\"xpath\",\n\"app_version\":\"\"\n}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "get specific object from objectEngine",
+			"request": {
+				"url": {
+					"raw": "http://13.127.152.76:9090/nyk/getObject?object=cav_addtobag_select_size&channel=nykaaAndroid",
+					"protocol": "http",
+					"host": [
+						"13",
+						"127",
+						"152",
+						"76"
+					],
+					"port": "9090",
+					"path": [
+						"nyk",
+						"getObject"
+					],
+					"query": [
+						{
+							"key": "object",
+							"value": "cav_addtobag_select_size",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "channel",
+							"value": "nykaaAndroid",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					},
+					{
+						"key": "Host",
+						"value": "localhost:8080",
+						"description": ""
+					},
+					{
+						"key": "Content-Length",
+						"value": "41",
+						"description": ""
+					},
+					{
+						"key": "X-Amz-Date",
+						"value": "20200506T122448Z",
+						"description": ""
+					},
+					{
+						"key": "nyk_Token",
+						"value": "AWS4-HMAC-SHA256 Credential=/20200506/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;www_authenticate;x-amz-date, Signature=d9c44e7fbbffd2d7e03fd8b3877bdc1fb2c20c4d8196c7de85773b61d97c115c",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "AWS4-HMAC-SHA256 Credential=/20200506/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;nyk-header;nyk_token;x-amz-date, Signature=69e0e43237784a70d0cf09274c646ebf58bc2580577c1daf25d94f818f133faf",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"key\":\"lux_brand_product_url\",\n  \"environment\":\"prod\",\n  \"platform\":\"nykaa\",\n  \"getallkeys\":true\n}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "get a user account",
+			"request": {
+				"url": {
+					"raw": "http://13.127.152.76:9090/nyk/request_user_account?usertype=general.email_otp_login&channel=nykaafashion&env=live",
+					"protocol": "http",
+					"host": [
+						"13",
+						"127",
+						"152",
+						"76"
+					],
+					"port": "9090",
+					"path": [
+						"nyk",
+						"request_user_account"
+					],
+					"query": [
+						{
+							"key": "usertype",
+							"value": "general.email_otp_login",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "channel",
+							"value": "nykaafashion",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "env",
+							"value": "live",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					},
+					{
+						"key": "Host",
+						"value": "localhost:8080",
+						"description": ""
+					},
+					{
+						"key": "Content-Length",
+						"value": "41",
+						"description": ""
+					},
+					{
+						"key": "X-Amz-Date",
+						"value": "20200506T122448Z",
+						"description": ""
+					},
+					{
+						"key": "nyk_Token",
+						"value": "AWS4-HMAC-SHA256 Credential=/20200506/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;www_authenticate;x-amz-date, Signature=d9c44e7fbbffd2d7e03fd8b3877bdc1fb2c20c4d8196c7de85773b61d97c115c",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "AWS4-HMAC-SHA256 Credential=/20200506/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;nyk-header;nyk_token;x-amz-date, Signature=69e0e43237784a70d0cf09274c646ebf58bc2580577c1daf25d94f818f133faf",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"key\":\"lux_brand_product_url\",\n  \"environment\":\"prod\",\n  \"platform\":\"nykaa\",\n  \"getallkeys\":true\n}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "free a user account",
+			"request": {
+				"url": {
+					"raw": "http://13.127.152.76:9090/nyk/set_user_free?userToRemove=nykaafashiontest@gmail.com&channel=nykaafashion&env=live",
+					"protocol": "http",
+					"host": [
+						"13",
+						"127",
+						"152",
+						"76"
+					],
+					"port": "9090",
+					"path": [
+						"nyk",
+						"set_user_free"
+					],
+					"query": [
+						{
+							"key": "userToRemove",
+							"value": "nykaafashiontest@gmail.com",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "channel",
+							"value": "nykaafashion",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "env",
+							"value": "live",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					},
+					{
+						"key": "Host",
+						"value": "localhost:8080",
+						"description": ""
+					},
+					{
+						"key": "Content-Length",
+						"value": "41",
+						"description": ""
+					},
+					{
+						"key": "X-Amz-Date",
+						"value": "20200506T122448Z",
+						"description": ""
+					},
+					{
+						"key": "nyk_Token",
+						"value": "AWS4-HMAC-SHA256 Credential=/20200506/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;www_authenticate;x-amz-date, Signature=d9c44e7fbbffd2d7e03fd8b3877bdc1fb2c20c4d8196c7de85773b61d97c115c",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "AWS4-HMAC-SHA256 Credential=/20200506/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;nyk-header;nyk_token;x-amz-date, Signature=69e0e43237784a70d0cf09274c646ebf58bc2580577c1daf25d94f818f133faf",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"key\":\"lux_brand_product_url\",\n  \"environment\":\"prod\",\n  \"platform\":\"nykaa\",\n  \"getallkeys\":true\n}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "get all keys from dataEngine as key value",
+			"request": {
+				"url": "http://13.127.152.76:9090/nyk/getdata/getallkeys",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					},
+					{
+						"key": "Host",
+						"value": "localhost:8080",
+						"description": ""
+					},
+					{
+						"key": "Content-Length",
+						"value": "41",
+						"description": ""
+					},
+					{
+						"key": "X-Amz-Date",
+						"value": "20200506T122448Z",
+						"description": ""
+					},
+					{
+						"key": "nyk_Token",
+						"value": "AWS4-HMAC-SHA256 Credential=/20200506/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;www_authenticate;x-amz-date, Signature=d9c44e7fbbffd2d7e03fd8b3877bdc1fb2c20c4d8196c7de85773b61d97c115c",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "AWS4-HMAC-SHA256 Credential=/20200506/us-east-1/execute-api/aws4_request, SignedHeaders=content-length;content-type;host;nyk-header;nyk_token;x-amz-date, Signature=69e0e43237784a70d0cf09274c646ebf58bc2580577c1daf25d94f818f133faf",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"environment\":\"live\",\n  \"platform\":\"nykaafashion\"\n}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "get specific data from dataEngine",
+			"request": {
+				"url": "http://13.127.152.76:9090/nyk/getdata",
+				"method": "POST",
+				"header": [
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"key\":\"ShippingMessage\",\n  \"environment\":\"prod\",\n  \"platform\":\"nykaa\"\n}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "get all dataEngine keys",
+			"request": {
+				"url": {
+					"raw": "http://13.127.152.76:9090/nyk/getdata/download?env=prod",
+					"protocol": "http",
+					"host": [
+						"13",
+						"127",
+						"152",
+						"76"
+					],
+					"port": "9090",
+					"path": [
+						"nyk",
+						"getdata",
+						"download"
+					],
+					"query": [
+						{
+							"key": "env",
+							"value": "prod",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"key\":\"lux_brand_product_url\",\n  \"environment\":\"prod\",\n  \"platform\":\"nykaa\",\n  \"getallkeys\":true\n}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "enable captcha on beauty preprod",
+			"request": {
+				"url": "http://13.127.152.76:9090/nyk/action",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"action\":\"disableCaptcha\"\n}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "server check - hello",
+			"request": {
+				"url": "http://13.127.152.76:9090/nyk/hello",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "disable Captcha on beauty preprod",
+			"request": {
+				"url": "http://13.127.152.76:9090/nyk/action",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"action\":\"disableCaptcha\"\n}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "get OTP received on GMAIL",
+			"request": {
+				"url": {
+					"raw": "http://13.127.152.76:9090/nyk/getemailotp?email=automation@nykaa.com",
+					"protocol": "http",
+					"host": [
+						"13",
+						"127",
+						"152",
+						"76"
+					],
+					"port": "9090",
+					"path": [
+						"nyk",
+						"getemailotp"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "automation@nykaa.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "refreshdata",
+			"request": {
+				"url": "http://13.127.152.76:9090/nyk/refresh/dataengine",
+				"method": "GET",
+				"header": [
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "getdata/tavern - local",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/webproject/getdata/tavern?env=prod&platform=nykaafashion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"webproject",
+						"getdata",
+						"tavern"
+					],
+					"query": [
+						{
+							"key": "env",
+							"value": "prod",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "platform",
+							"value": "nykaafashion",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "nyk-header",
+						"value": "nyk-auth",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

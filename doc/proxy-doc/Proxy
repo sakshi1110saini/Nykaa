@@ -1,0 +1,15 @@
+For chrome driver : 79 plus 
+Getting proxy cerificate issue 
+Fixe : 
+1) In desktop chrome : 
+options.addArguments("--test-type");
+options.addArguments("--ignore-certificate-errors");
+Was added 
+
+2) Mobile chrome :
+options.addArguments("--test-type");
+options.addArguments("--ignore-certificate-errors");
+options.addArguments("--allow-insecure-localhost");
+capabilities.setAcceptInsecureCerts(true);
+Was added .
+			

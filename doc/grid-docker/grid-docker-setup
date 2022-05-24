@@ -1,0 +1,55 @@
+Capability fix for chrome v89 and above:
+ 	options.addArguments("--no-sandbox");
+ 	options.addArguments("--disable-dev-shm-usage");
+
+Pull a Docker:
+	sudo docker pull selenium/node-chrome-debug 
+
+Commit Changes in Docker:
+	docker images
+	docker run -it <Image Name> /bin/bash
+	
+	then update /opt/bin/generate_config variable "host"
+	to "host": "HOSTNAME"
+
+	docker commit <Container_ID> 911609873560.dkr.ecr.ap-south-1.amazonaws.com/nykaa-preprod-selenium:<Latest_Tag>
+	docker push 911609873560.dkr.ecr.ap-south-1.amazonaws.com/nykaa-preprod-selenium:<Latest_Tag>
+
+Task definition should have entry point.sh 
+
+____________________________________________________
+To update chromedriver in existing container:
+apt-get update && apt-get -y install libglib2.0-dev libxi6 libnss3-dev
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+apt-get update && apt-get -y install google-chrome-stable
+___________________________________________________
+
+
+Commit changes:
+ref:https://phoenixnap.com/kb/how-to-commit-changes-to-docker-image
+
+sudo docker commit [CONTAINER_ID] [new_image_name]
+sudo docker commit deddd39fa163 ubuntu-nmap
+
+Copy Files:
+docker cp <containerId>:/file/path/in/container/file /host/local/path/file
+
+Hub:
+java -jar selenium-server-standalone-3.141.59.jar -role hub -port 4444 -timeout 120 -log grid.log -debug
+
+Docker Node:
+sudo docker run -d -p 5555:5555 --name chromo1 -e HUB_HOST=192.168.1.9 -e HUB_PORT=4444  -e NODE_MAX_INSTANCES=2 -e NODE_MAX_SESSION=2 selenium/node-chrome bash -x /opt/bin/entry_point.sh
+
+
+Trigger Code:
+mvn clean test -Dsurefire.suiteXmlFiles=testNG/desktop.xml -DexecutorCapacity=0 -DgridExecutorCapacity=1 -Dtest_env=prod -Dtest_case_id=Nykaa_TC_19_PDP -DipHub=192.168.1.9
+
+mvn clean test -Dsurefire.suiteXmlFiles=testNG/desktop.xml -DexecutorCapacity=0 -DgridExecutorCapacity=1 -Dtest_env=prod -Dtest_case_id=Nykaa_TC_19_PDP -DipHub=172.26.1.173
+
+mvn clean test -Dsurefire.suiteXmlFiles=testNG/desktop.xml -DexecutorCapacity=0 -DgridExecutorCapacity=1 -Dtest_env=prod -Dtest_case_id=Nykaa_TC_19_PDP -DipHub=13.235.186.44
+
+
+Check if node is working:
+curl -X POST http://ip-172-26-15-205.ap-south-1.compute.internal:5555/wd/hub/session -d '{"desiredCapabilities":{"browserName":"chrome"}}'
+

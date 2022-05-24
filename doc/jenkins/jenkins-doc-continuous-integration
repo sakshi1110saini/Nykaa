@@ -1,0 +1,67 @@
+Reference for remote trigger a jenkins job:
+http://www.inanzzz.com/index.php/post/jnrg/running-jenkins-build-via-command-line
+
+******************************** FOR CONTINUOUS INTEGRATION ******************************** 
+
+1. remote trigger jenkins build:
+
+Final Working - 
+curl -u pankaj.katiyar@nykaa.com:cba4f4b4380e43b3839bdfb434b3ce0f -X POST "http://non-prod-jenkins.nyk00-int.network:8080/job/nka-qa-preprod4/job/nka-qa-preprod4-magento-deploy/buildWithParameters?token=3987643217265342&git_branch=master&varnish_flush_required=yes"
+
+
+2. get last build status:
+curl -u pankaj.katiyar@nykaa.com:cba4f4b4380e43b3839bdfb434b3ce0f http://non-prod-jenkins.nyk00-int.network:8080/job/nka-preprod/job/nka-preprod-magento-deploy/lastBuild/api/json
+
+
+******************************** ******************************** ********************************
+
+## jenkins issues
+
+if valid crumb was not found then disable csrf in jenkins - configure global security.
+
+2. Sample Jenkins Remote Build URL:
+curl -X POST "http://pankaj:aff8393a5b46b614368cdee1b23fe5d5@192.168.10.34:8080/job/Lenskart_Grid_Node_Server/buildWithParameters?token=kVfSb7gSm2eDaaFq&git_branch=master&test_suite_type=Test&host_entry=&test_env=prod&channel_type=mobile"
+
+3. In case of Authorization Required message is displayed from Java or Postman then use Authorization tab of Postman with Type as Basic Auth and provide
+jenkins credential.  
+refer #
+https://cloud.githubusercontent.com/assets/10685261/23099690/ff5885f6-f692-11e6-873f-5272b282c937.png
+https://github.com/WP-API/WP-API/issues/509
+
+****************************
+
+If you installed Jenkins per default as a Windows service, you can copy a file named "known_hosts" under the directory
+C:\Windows\System32\Config\SystemProfile\ .ssh
+
+On Linux Machine while running code from jenkins:
+apt install Xvfb
+then run it with number of screens like:
+Xvfb :1
+
+and in build phase, export this variable like:
+unset DISPLAY
+export DISPLAY=:1
+#Ref
+https://www.blazemeter.com/blog/headless-execution-selenium-tests-jenkins
+
+kill Xvfb first and then start
+
+************************************************** REMOTE JENKINS BUILD TRIGGER *****************************************************************************
+
+Build Remote Trigger URL:
+http://pankaj:7b4dbe2c6604b847c92586e79d406894@192.168.10.34:8080/job/PoC/build?token=ESopHdtliWMM598p
+
+Get Crumb:
+curl -s 'http://pankaj:7b4dbe2c6604b847c92586e79d406894@192.168.10.34:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
+
+Sample URL:
+curl -X POST -H "$CRUMB" "http://USER:TOKEN@localhost:8080/createItem?name=NewJob"
+
+Final URL for PoC Job:
+curl -X POST -H "Jenkins-Crumb:cca16155a99e7ac81045f784918651e9" http://pankaj:7b4dbe2c6604b847c92586e79d406894@192.168.10.34:8080/job/PoC/build?token=ESopHdtliWMM598p
+
+Final URL for Mobile_Web_Automated_Test_Suite Job:
+curl -X POST -H "Jenkins-Crumb:efb5b5d79b1fce6f7eee641efbfa4889" http://pankaj:7b4dbe2c6604b847c92586e79d406894@192.168.10.34:8080/job/Mobile_Web_Automated_Test_Suite/build?token=9zWM7Gtpt4dmlvzL
+
+********************************
+

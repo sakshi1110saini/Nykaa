@@ -1,0 +1,16 @@
+Pre-Requirments 
+
+Install ADB : https://www.xda-developers.com/install-adb-windows-macos-linux/
+Install Android studio : https://developer.android.com/studio?gclid=CjwKCAjw1JeJBhB9EiwAV612y0lFrU0fsqZzWyX4CfoplPPJ-X0VgATx0PDOPKIU5-CKoKhzqPWAXRoCqKwQAvD_BwE&gclsrc=aw.ds
+Create an emulator 
+ Download the nykaa.apk (live) 
+ Turn on the preprod vpn
+
+download the .sh file from git : https://github.com/Nykaa/nykaa_automation/blob/master/scripts/monkeyRunner.sh
+Save it to a location lets say "~/Desktop/Monkey/monkeyRunner.sh"
+Open the terminal navigate to the loaction where file is saved : ~/Desktop/Monkey
+
+Run the command for ubuntu : 
+   source MonkeyRunner.sh <path_of_apk eg> <environment> <platform> : source MonkeyRunner.sh /home/sabhyatakaushik/Downloads/nykaaLive.apk prod nykaa and for Windows : Bash MonkeyRunner.sh <path_of_apk eg> <environment> <platform>
+Result will be store in the directorywhere Monkey runner file is saved under the forlder name "MonkeyRunner" file name : currenttimestamp.log
+For terminating the job : return command or CTRL+X or 

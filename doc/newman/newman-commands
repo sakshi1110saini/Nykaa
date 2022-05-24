@@ -1,0 +1,7 @@
+
+Postman extra html report
+npm install -g newman-reporter-htmlextra
+
+Sample Command:
+newman run "https://api.getpostman.com/collections/eaa77539-1ca8-46a2-bb2f-55fbeb47e5ac?apikey=b2a4b63d108044fbb37e76b6744851e4"  --environment  "https://api.getpostman.com/environments/596273ef-9ee2-4884-8809-b575ae7c6d3a?apikey=b2a4b63d108044fbb37e76b6744851e4"  -r htmlextra
+

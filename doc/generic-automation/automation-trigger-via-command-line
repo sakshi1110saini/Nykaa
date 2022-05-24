@@ -1,0 +1,38 @@
+Fashion - Command Line Arguments :
+	mvn clean test -Dsurefire.suiteXmlFiles=$testNG -DconfigForAppRun=emulator -Dapk_name=/Users/qa-mac/Desktop/Apps/nykaa.apk -Dtest_suite_type=$test_suite_type -Dapp_version=2.3.5 -DappPlatform=Android -Dtest_env=live -DexecutorCapacity=1 -Dtest_case_id=<$test_case_id>
+
+
+Sample command to run for Nykaaman Android
+	mvn clean test -Dsurefire.suiteXmlFiles=testNG/testng.xml -DANDROID_HOME=C:\Users\Automation\AppData\Local\Android\sdk -DapkName=app-nykaaman-release.apk -DconfigForAppRun=localrun -Dchannel_type=nykaaManAndorid
+
+
+Sample Command Line For Apps:
+	mvn clean test -Dsurefire.suiteXmlFiles=testNG/nykaafashionAndroid.xml-DANDROID_HOME=C:\Users\Automation\AppData\Local\Android\sdk -DapkName=app-nykaaman-release.apk -DconfigForAppRun=emulator -DexecutorCapacity=1 
+
+
+For nykaa desktop web:
+	mvn clean test -Dsurefire.suiteXmlFiles=testNG/testng.xml -Dchannel_type=nykaaDesktop -DexecutorCapacity=1
+
+For nykaa Mobile Web:
+	mvn clean test -Dsurefire.suiteXmlFiles=testNG/testng.xml -Dchannel_type=nykaaMobileWeb -Dmaven.surefire.debug=true
+
+For Nykaa Android:
+	mvn clean test -Dsurefire.suiteXmlFiles=testNG/testng.xml -DapkName=app-nykaa-release.apk -DconfigForAppRun=emulator -Dchannel_type=nykaaAndroid -Dtest_suite_type=Login -Dapp_version=2.1.2 -Dmaven.surefire.debug=true -DappPlatform=Android
+
+For Running any test on Kobiton:
+	mvn clean test -Dsurefire.suiteXmlFiles=testNG/testng.xml -Dchannel_type=nykaaAndroid -DconfigForAppRun=kobiton -Dtest_suite_type=Kobiton -Dapp_version=2.1.5_Live -DappPlatform=Android -DANDROID_HOME=%ANDROID_HOME% -Dandroid_app_package=com.fsn.nykaa: -Dtest_env=live 
+
+	mvn clean test -Dsurefire.suiteXmlFiles=testNG/nykaaAndroid.xml -Dchannel_type=nykaaAndroid -DconfigForAppRun=emulator -Dtest_suite_type=regression -Dapp_version=2.1.7 -DappPlatform=Android -DANDROID_HOME=/home/abc/Android/Sdk -Dtest_env=live -DWORKSPACE=/home/abc/.jenkins/workspace/CD_Android_Automation -DBUILD_NUMBER=106 -DJOB_NAME=CD_Android_Automation -DJENKINS_URL=http://192.168.14.71:8080/
+
+For Running any test on Kobiton or local device:
+	mvn clean test -Dsurefire.suiteXmlFiles=testNG/nykaaAndroid.xml -Dchannel_type=nykaaAndroid -DconfigForAppRun=emulator -Dtest_suite_type=AppSanity_Test -Dapp_version=2.1.5 -DappPlatform=Android -Dtest_env=live -DexecutorCapacity=2 -DANDROID_HOME=%ANDROID_HOME%
+
+	mvn clean test -Dsurefire.suiteXmlFiles=testNG/nykaaAndroid.xml -Dchannel_type=nykaaAndroid -DconfigForAppRun=kobiton -Dtest_suite_type=regression -Dapp_version=2.1.5 -DappPlatform=ios -Dtest_env=live -DexecutorCapacity=1 -DANDROID_HOME=$ANDROID_HOME -Dkobiton_app_id=29358  -Dmaven.surefire.debug=true
+
+
+Command to Run DataEngine:
+	Run command for ValidatePropertyFile:
+	mvn clean compile exec:java -Dexec.mainClass="data.engine.ValidatePropertyFile"
+
+	Run command for data engine:
+	mvn clean compile exec:java -Dexec.mainClass="data.engine.DataEngine" -Dtest_env=<environment_name>

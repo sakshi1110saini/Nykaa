@@ -1,0 +1,35 @@
+1. Local Machine MacOs:
+	Jenkins url : http://192.168.14.232:8080/
+	Admin username : rishi
+	Admin password : admin
+	Jenkins war path : /Users/admin/jenkins.war
+	Machine username : admin
+	Machine password : nykaa@123
+
+2. Local Machine Ubuntu:
+	Jenkins url : http://192.168.14.71:8080/
+	Admin username : admin
+	Admin password : admin
+	Jenkins war path : /home/abc/jenkins.war
+	Machine username : abc
+	Machine password : abc
+	
+3. AWS Machine : Live Monitor
+	Jenkins url : http://13.235.186.44:8080/
+	username : 
+	password :
+	Jenkins war path : Desktop/jenkinsInstall/jenkins.war
+	Machine servername : ec2-13-235-186-44.ap-south-1.compute.amazonaws.com
+	Machine username : Administrator
+	Machine password : nykaa@123
+	Note : To access the machine and jenkins from outside network need to connect to mumbai preprod vpn
+
+4. Aws Machine : Singapore
+	Jenkins url : http://52.76.69.161:8080/
+	username : 
+	password :
+	Jenkins war path : Desktop/jenkinsInstall/jenkins.war
+	Machine servername : 52.76.69.161
+	Machine username : administrator
+	Machine password : nykaa@123
+	Note : To access the machine and jenkins from outside network need to connect to Non-Prod Singapore VPN

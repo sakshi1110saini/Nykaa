@@ -1,0 +1,23 @@
+Sample Keys and format:
+
+#####DataEngine for plp/listing page urls######
+sp_less_than_500_plp_url    - for simple product less than 500 price
+sp_greater_than_500_plp_url - for simple product greater than 500 price
+cp_less_than_500_plp_url    - for configurable product less than 500 price
+cp_greater_than_500_plp_url - for configurable product greater than 500 price
+bundle_product_plp_url      - for bundle product search page
+
+#####DataEngine for product page direct urls######
+sp_less_than_500_pdp_url
+sp_greater_than_500_pdp_url
+cp_less_than_500_pdp_url
+cp_greater_than_500_pdp_url
+bundle_product_pdp_url
+
+
+#####DataEngine for product name to be use to add product from plp page######
+sp_less_than_500_product_name
+sp_greater_than_500_product_name
+cp_less_than_500_product_name
+cp_greater_than_500_product_name
+bundle_product_product_name

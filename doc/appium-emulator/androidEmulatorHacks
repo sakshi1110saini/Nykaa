@@ -1,0 +1,21 @@
+##### Execute deeplink ####
+adb shell am start -a android.intent.action.VIEW -d "URL"
+
+##### GET LIST OF AVAILABLE EMULATORS ####
+emulator -list-avds
+
+##### START A PARTICULAR EMULATOR #####
+emulator @EMULATOR_NAME
+
+#### CREATE AN EMULATOR ######
+ANDROIDHOME/tools/bin/avdmanager create avd -n  deviceName -k system-images;android-28;google_apis_playstore;x86_64\ -b x86_64 -c 100M -f --device Nexus 5X 
+
+#### EMULATOR WIPE DATA COMMAND ######
+emulator @EMULATOR_NAME -wipe-data
+
+##### KILL EMULATOR #####
+ps -ef | grep avdName | grep -v grep | awk '{print $2}' | xargs kill -9
+
+
+###### DELETE AN EMULATOR  ######
+ANDROIDHOME/tools/bin/avdmanager delete avd -n DEVICENAME

@@ -1,0 +1,9 @@
+How to generate:
+mvn clean compile test site
+
+Generated Report:
+/target/site/project-reports.html
+
+code quality analysis by sonar
+0. run sonar server, download - sonarqube-7.6, run by /bin/sh sonar.sh console
+1. mvn clean verify sonar:sonar

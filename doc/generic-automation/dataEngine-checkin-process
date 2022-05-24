@@ -1,0 +1,16 @@
+#Steps to follow while commiting changes in data engine
+
+1. Commit your code in your current working branch.
+2. Take a pull from master in order to rebase it from master.
+3. Run the ValidatePropertyFile class in order to verify all is fine in data engine.
+4. Analyse the result, for duplicate keys and property count in each file.
+5. Correct the discripancy if appear else proceed.
+6. Run dataengine and make sure all is good.
+7. Push your code to git.
+
+
+Adding Remote Repo to existing project
+https://help.github.com/articles/adding-a-remote/
+
+git undo commit -
+git revert -m1 <CommitID>
